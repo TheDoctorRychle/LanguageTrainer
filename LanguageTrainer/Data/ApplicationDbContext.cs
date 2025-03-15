@@ -11,7 +11,8 @@ namespace LanguageTrainer.Data
         public DbSet<WordCategory> WordCategories { get; init; }
         public DbSet<WordDifficulty> WordDifficulties { get; init; }
         public DbSet<UserWord> UserWords { get; init; }
-        
+        public DbSet<WordDifficulty> WordDifficulty { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
