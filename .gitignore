@@ -4,7 +4,7 @@
 *.rsuser
 *.sln.dotSettings*
 
-wwwroot/lib/
+LanguageTrainer/wwwroot/lib/
 
 bin/
 obj/
