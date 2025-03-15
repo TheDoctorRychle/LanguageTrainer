@@ -1,0 +1,16 @@
+﻿.idea
+*.suo
+*.user
+*.rsuser
+*.sln.dotSettings*
+
+wwwroot/lib/
+
+bin/
+obj/
+
+.log
+.cashe
+.lock
+.db
+.sqlite
