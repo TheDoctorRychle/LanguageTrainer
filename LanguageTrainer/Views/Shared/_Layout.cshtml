@@ -1,0 +1,54 @@
+﻿@using LanguageTrainer.Models
+@if (ViewBag.ErrorMessage != null)
+{
+<div class="alert alert-danger">
+    @ViewBag.ErrorMessage
+</div>
+}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Language Trainer</title>
+    <link rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Language Trainer</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                @if (ViewBag.User != null)
+                {
+                    if (ViewBag.User is User user && user.IsAdmin)
+                {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("PendingUsers", "Admin")">Panel administratora</a>
+                </li>
+                }
+
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Logout", "User")">Wylogowanie</a>
+                </li>
+                }
+                else
+                {
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Register", "User")">Rejestracja</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login", "User")">Logowanie</a>
+                </li>
+                }
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    @RenderBody()
+</div>
+
+</body>
+</html>

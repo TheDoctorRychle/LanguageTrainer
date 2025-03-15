@@ -1,0 +1,24 @@
+﻿@model List<LanguageTrainer.Models.User>
+
+<h2>Oczekujący na zatwierdzenie</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Akcja</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+    <tr>
+        <td>@user.Username</td>
+        <td>@user.Email</td>
+        <td>
+            <a href="@Url.Action("ApproveUser", "Admin", new { id = user.Id })" class="btn btn-success">Zatwierdź</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>
