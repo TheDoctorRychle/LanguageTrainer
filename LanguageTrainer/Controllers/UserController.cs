@@ -23,7 +23,6 @@ public class UserController : Controller
         return View();
     }
     [HttpPost]
-    [HttpPost]
     public IActionResult Register(string username, string email, string password)
     {
         var pendingUsersCount = _context.Users.Count(u => !u.IsApproved);
