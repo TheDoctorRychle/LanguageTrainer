@@ -81,6 +81,10 @@ namespace LanguageTrainer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Difficulty")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("English")
                         .IsRequired()
                         .HasColumnType("TEXT");
