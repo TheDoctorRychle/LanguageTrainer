@@ -14,3 +14,5 @@ obj/
 .lock
 .db
 .sqlite
+*.bak
+*.swp
