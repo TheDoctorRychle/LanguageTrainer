@@ -7,7 +7,7 @@ namespace LanguageTrainer.Data
     {
         public DbSet<User> Users { get; init; }
         public DbSet<Category> Categories { get; init; }
-        public DbSet<Word> Words { get; init; }
+        public DbSet<Word?> Words { get; init; }
         public DbSet<WordCategory> WordCategories { get; init; }
         public DbSet<WordDifficulty> WordDifficulties { get; init; }
         public DbSet<UserWord> UserWords { get; init; }

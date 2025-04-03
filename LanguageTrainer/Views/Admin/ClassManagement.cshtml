@@ -1,0 +1,27 @@
+﻿@model LanguageTrainer.Models.Category
+
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dodaj kategorię</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Dodaj nową kategorię</h2>
+
+    <form method="post" action="@Url.Action("AddCategory", "Admin")">
+        <div class="form-group">
+            <label for="Name">Nazwa kategorii</label>
+            <input type="text" class="form-control" id="Name" name="Name" required />
+        </div>
+        <div class="mt-4">
+            <a href="@Url.Action("AddCategory", "Admin")" class="btn btn-secondary">Dodaj nową kategorię</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

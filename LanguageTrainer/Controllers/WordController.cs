@@ -42,7 +42,7 @@ public class WordController(ApplicationDbContext context) : ControllerBase
     
 
     [HttpPost]
-    public IActionResult AddWord([FromBody] Word word, [FromBody] List<int> categoryIds, [FromBody] string difficulty)
+    public IActionResult AddWord([FromBody] Word? word, [FromQuery] List<int>? categoryIds, [FromQuery] string difficulty)
     {
         if (word == null || categoryIds == null || string.IsNullOrEmpty(difficulty)) 
             return BadRequest("Brak wymaganych danych.");

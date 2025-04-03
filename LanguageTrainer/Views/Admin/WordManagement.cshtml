@@ -1,0 +1,50 @@
+﻿@model LanguageTrainer.Models.Word
+@{
+Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edytor Słów</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Dodaj nowe słowo</h2>
+
+    <form method="post" action="@Url.Action("AddWord", "Admin")">
+        <div class="form-group">
+            <label for="English">Angielskie słowo</label>
+            <input type="text" class="form-control" id="English" name="English" required />
+        </div>
+        <div class="form-group">
+            <label for="Polish">Polskie tłumaczenie</label>
+            <input type="text" class="form-control" id="Polish" name="Polish" required />
+        </div>
+
+        <div class="form-group">
+            <label for="CategoryId">Kategoria</label>
+            <select class="form-control" id="CategoryId" name="CategoryId" required>
+                <option value="">Wybierz kategorię</option>
+                @foreach (var category in ViewBag.Categories as List<LanguageTrainer.Models.Category>)
+                {
+                <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="Difficulty">Poziom trudności</label>
+            <select class="form-control" id="Difficulty" name="Difficulty" required>
+                <option value="Easy">Łatwy</option>
+                <option value="Medium">Średni</option>
+                <option value="Hard">Trudny</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Dodaj słowo</button>
+    </form>
+    
+</div>
+</body>
+</html>

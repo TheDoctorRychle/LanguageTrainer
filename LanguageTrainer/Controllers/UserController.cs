@@ -5,16 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LanguageTrainer.Controllers;
 
-public class UserController : Controller
+public class UserController(ApplicationDbContext context) : Controller
 {
-    private readonly ApplicationDbContext _context;
-
-    public UserController(ApplicationDbContext context)
-    {
-        _context = context;
-    }
-
-
     //////////////////Rejestracja////////////////////
 
     [HttpGet]
@@ -25,14 +17,14 @@ public class UserController : Controller
     [HttpPost]
     public IActionResult Register(string username, string email, string password)
     {
-        var pendingUsersCount = _context.Users.Count(u => !u.IsApproved);
+        var pendingUsersCount = context.Users.Count(u => !u.IsApproved);
         if (pendingUsersCount >= 20)
         {
             ViewBag.ErrorMessage = "Nie możemy przyjąć nowych użytkowników, ponieważ lista oczekujących jest pełna.";
             return View();
         }
         
-        if (_context.Users.Any(u => u.Username == username || u.Email == email))
+        if (context.Users.Any(u => u.Username == username || u.Email == email))
         {
             ViewBag.ErrorMessage = "Nazwa użytkownika lub email jest już zajęta.";
             return View();
@@ -54,8 +46,8 @@ public class UserController : Controller
             user.IsAdmin = true;
         }
 
-        _context.Users.Add(user);
-        _context.SaveChanges();
+        context.Users.Add(user);
+        context.SaveChanges();
 
         return RedirectToAction("Login");
     }
@@ -70,7 +62,7 @@ public class UserController : Controller
     [HttpPost]
     public IActionResult Login(string username, string password)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Username == username);
+        var user = context.Users.FirstOrDefault(u => u.Username == username);
     
         if (user == null || !BCrypt.Net.BCrypt.Verify(password, user.PasswordHash) || !user.IsApproved)
         {

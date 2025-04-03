@@ -1,4 +1,5 @@
 ﻿using LanguageTrainer.Data;
+using LanguageTrainer.Models;
 using Microsoft.AspNetCore.Mvc;
 namespace LanguageTrainer.Controllers;
 
@@ -32,5 +33,43 @@ public class AdminController(ApplicationDbContext context) : Controller
         return RedirectToAction("PendingUsers");
     }
 
+
+    public IActionResult AdministrationPanel()
+    {
+        var userId = HttpContext.Session.GetInt32("UserId");
+        if (userId == null)
+        {
+            return RedirectToAction("Login", "User");
+        }
+
+        var user = context.Users.FirstOrDefault(u => u.Id == userId);
+        if (user is not { IsAdmin: true })
+        {
+            return Unauthorized();
+        }
+        return View(user);
+    }
+    
+    public IActionResult WordManagement()
+    {
+        var categories = context.Categories.ToList();
+        ViewBag.Categories = categories;
+        return View();
+    }
+    
+    [HttpPost]
+    public IActionResult AddCategory(Category category)
+    {
+        if (ModelState.IsValid)
+        {
+            context.Categories.Add(category);
+            context.SaveChanges();
+
+            TempData["SuccessMessage"] = "Kategoria została dodana pomyślnie!";
+            return RedirectToAction("WordManagement");
+        }
+
+        return View(category);
+    }
 
 }

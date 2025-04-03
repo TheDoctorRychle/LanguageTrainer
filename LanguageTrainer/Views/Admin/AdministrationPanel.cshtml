@@ -1,0 +1,21 @@
+﻿@page
+@model LanguageTrainer.Models.User
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Panel Administracyjny</title>
+</head>
+<body>
+<div>
+    <a href="@Url.Action("PendingUsers", "Admin")" class="btn btn-info mb-2">Zarządzanie użytkownikami</a>
+    <a href="@Url.Action("WordManagement", "Admin")" class="btn btn-info mb-2">Zarządzanie słowami</a>
+    <a href="@Url.Action("WordManagement", "Admin")" class="btn btn-info mb-2">Zarządzanie kategoriami</a>
+</div>
+</body>
+</html>
